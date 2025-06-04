@@ -5,6 +5,11 @@ cc_defaults {
         "-Wconversion",
         "-Wall",
         "-Werror",
+        "-DDEBUG_CALC_FPS",
+        "-Wno-sign-conversion",
+        "-DVENUS_COLOR_FORMAT",
+        "-DMDSS_TARGET",
+        "-D__STDC_FORMAT_MACROS",
     ] + select(soong_config_variable("qtidisplay", "headless"), {
         "true": ["-DTARGET_HEADLESS"],
         default: [],
@@ -13,6 +18,8 @@ cc_defaults {
         "liblog",
         "libcutils",
         "libutils",
+        "libhardware",
+        "libEGL",
     ],
     header_libs: ["display_headers"],
 }

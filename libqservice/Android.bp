@@ -1,0 +1,20 @@
+cc_library_shared {
+    name: "libqservice",
+    defaults: ["display_defaults"],
+    vendor: true,
+    srcs: [
+        "QService.cpp",
+        "IQService.cpp",
+        "IQClient.cpp",
+    ],
+    shared_libs: [
+        "libbinder",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"qdqservice\"",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+    ],
+}

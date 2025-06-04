@@ -1,0 +1,79 @@
+cc_library_shared {
+    name: "libqdutils",
+    defaults: ["display_defaults"],
+    vendor: true,
+    srcs: [
+        "profiler.cpp",
+        "mdp_version.cpp",
+        "idle_invalidator.cpp",
+        "comptype.cpp",
+        "qd_utils.cpp",
+        "cb_utils.cpp",
+        "display_config.cpp",
+        "cb_swap_rect.cpp",
+    ],
+    shared_libs: [
+        "libui",
+        "libbinder",
+        "libqservice",
+        "libhardware",
+        "libutils",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"qdutils\"",
+        "-Wno-float-conversion",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+        "libutils_headers",
+    ],
+}
+
+cc_library_shared {
+    name: "libqdMetaData",
+    defaults: ["display_defaults"],
+    vendor: true,
+    srcs: [
+        "qdMetaData.cpp",
+        "qd_utils.cpp",
+    ],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libhardware",
+        "libutils",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"DisplayMetaData\"",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+        "libutils_headers",
+    ],
+}
+
+cc_library_shared {
+    name: "libqdMetaData.system",
+    defaults: ["display_defaults"],
+//    vendor: true,
+    srcs: [
+        "qdMetaData.cpp",
+        "qd_utils.cpp",
+    ],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libhardware",
+        "libutils",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"DisplayMetaData\"",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+        "libutils_headers",
+    ],
+}

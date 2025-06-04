@@ -1,0 +1,41 @@
+soong_config_module_type {
+    name: "target_board_platform_cc_library_shared",
+    module_type: "cc_library_shared",
+    config_namespace: "ANDROID",
+    value_variables: ["target_board_platform"],
+    properties: [
+        "name",
+    ],
+}
+
+target_board_platform_cc_library_shared {
+    name: "copybit.qcom",
+    soong_config_variables: {
+        target_board_platform: {
+            name: "copybit.%s",
+            conditions_default: {
+                name: "copybit.qcom",
+            },
+        },
+    },
+    defaults: ["display_defaults"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "copybit_c2d.cpp",
+        "software_converter.cpp",
+    ],
+    shared_libs: [
+        "libdl",
+        "libhardware",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"qdcopybit\"",
+        "-DCOPYBIT_Z180=1",
+        "-DC2D_SUPPORT_DISPLAY=1",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+    ],
+}

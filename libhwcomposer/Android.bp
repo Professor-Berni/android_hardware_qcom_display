@@ -1,0 +1,60 @@
+soong_config_module_type {
+    name: "target_board_platform_cc_library_shared",
+    module_type: "cc_library_shared",
+    config_namespace: "ANDROID",
+    value_variables: ["target_board_platform"],
+    properties: [
+        "name",
+    ],
+}
+
+target_board_platform_cc_library_shared {
+    name: "hwcomposer.qcom",
+    soong_config_variables: {
+        target_board_platform: {
+            name: "hwcomposer.%s",
+            conditions_default: {
+                name: "hwcomposer.qcom",
+            },
+        },
+    },
+    defaults: ["display_defaults"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "hwc.cpp",
+        "hwc_utils.cpp",
+        "hwc_uevents.cpp",
+        "hwc_vsync.cpp",
+        "hwc_fbupdate.cpp",
+        "hwc_mdpcomp.cpp",
+        "hwc_copybit.cpp",
+        "hwc_qclient.cpp",
+        "hwc_dump_layers.cpp",
+        "hwc_ad.cpp",
+        "hwc_virtual.cpp",
+    ],
+    shared_libs: [
+        "libEGL",
+        "liboverlay",
+        "libhdmi",
+        "libqdutils",
+        "libhardware_legacy",
+        "libdl",
+        "libmemalloc",
+        "libqservice",
+        "libsync",
+        "libbinder",
+        "libui",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"qdhwcomposer\"",
+        "-Wno-absolute-value",
+        "-Wno-float-conversion",
+        "-Wno-unused-parameter",
+    ],
+    header_libs: [
+        "display_headers",
+        "generated_kernel_headers",
+    ],
+}
